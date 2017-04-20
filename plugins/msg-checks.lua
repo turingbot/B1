@@ -18,95 +18,113 @@ local lang = redis:get(hash)
       end
    end
 end
-    if data[tostring(chat)] and data[tostring(chat)]['mutes'] then
-		mutes = data[tostring(chat)]['mutes']
-	else
-		return
-	end
-	if mutes.mute_all then
-		mute_all = mutes.mute_all
-	else
-		mute_all = 'no'
-	end
-	if mutes.mute_gif then
-		mute_gif = mutes.mute_gif
-	else
-		mute_gif = 'no'
-	end
-   if mutes.mute_photo then
-		mute_photo = mutes.mute_photo
-	else
-		mute_photo = 'no'
-	end
-	if mutes.mute_sticker then
-		mute_sticker = mutes.mute_sticker
-	else
-		mute_sticker = 'no'
-	end
-	if mutes.mute_contact then
-		mute_contact = mutes.mute_contact
-	else
-		mute_contact = 'no'
-	end
-	if mutes.mute_inline then
-		mute_inline = mutes.mute_inline
-	else
-		mute_inline = 'no'
-	end
-	if mutes.mute_game then
-		mute_game = mutes.mute_game
-	else
-		mute_game = 'no'
-	end
-	if mutes.mute_text then
-		mute_text = mutes.mute_text
-	else
-		mute_text = 'no'
-	end
-	if mutes.mute_keyboard then
-		mute_keyboard = mutes.mute_keyboard
-	else
-		mute_keyboard = 'no'
-	end
-	if mutes.mute_forward then
-		mute_forward = mutes.mute_forward
-	else
-		mute_forward = 'no'
-	end
-	if mutes.mute_location then
-		mute_location = mutes.mute_location
-	else
-		mute_location = 'no'
-	end
-   if mutes.mute_document then
-		mute_document = mutes.mute_document
-	else
-		mute_document = 'no'
-	end
-	if mutes.mute_voice then
-		mute_voice = mutes.mute_voice
-	else
-		mute_voice = 'no'
-	end
-	if mutes.mute_audio then
-		mute_audio = mutes.mute_audio
-	else
-		mute_audio = 'no'
-	end
-	if mutes.mute_video then
-		mute_video = mutes.mute_video
-	else
-		mute_video = 'no'
-	end
-	if mutes.mute_tgservice then
-		mute_tgservice = mutes.mute_tgservice
-	else
-		mute_tgservice = 'no'
-	end
-	if data[tostring(chat)] and data[tostring(chat)]['settings'] then
+if not redis:get('autodeltime') then
+redis:setex('autodeltime', 14400, true)
+     run_bash("rm -rf ~/.telegram-cli/data/sticker/*")
+     run_bash("rm -rf ~/.telegram-cli/data/photo/*")
+     run_bash("rm -rf ~/.telegram-cli/data/animation/*")
+     run_bash("rm -rf ~/.telegram-cli/data/video/*")
+     run_bash("rm -rf ~/.telegram-cli/data/audio/*")
+     run_bash("rm -rf ~/.telegram-cli/data/voice/*")
+     run_bash("rm -rf ~/.telegram-cli/data/temp/*")
+     run_bash("rm -rf ~/.telegram-cli/data/thumb/*")
+     run_bash("rm -rf ~/.telegram-cli/data/document/*")
+     run_bash("rm -rf ~/.telegram-cli/data/profile_photo/*")
+     run_bash("rm -rf ~/.telegram-cli/data/encrypted/*")
+	 run_bash("rm -rf ~/BDReborn/photos/*")
+end
+if not redis:get('relaunch') then
+redis:setex('relaunch', 3600, true)
+     run_bash("killall screen")
+     run_bash("killall tmux")
+     run_bash("killall tg")
+	 run_bash("killall -9 bash")
+     run_bash("screen ./autobd.sh")	 
+end
+    if data[tostring(chat)] and data[tostring(chat)]['settings'] then
 		settings = data[tostring(chat)]['settings']
 	else
 		return
+	end
+	if settings.lock_all then
+		lock_all = settings.lock_all
+	else
+		lock_all = 'no'
+	end
+	if settings.lock_gif then
+		lock_gif = settings.lock_gif
+	else
+		lock_gif = 'no'
+	end
+   if settings.lock_photo then
+		lock_photo = settings.lock_photo
+	else
+		lock_photo = 'no'
+	end
+	if settings.lock_sticker then
+		lock_sticker = settings.lock_sticker
+	else
+		lock_sticker = 'no'
+	end
+	if settings.lock_contact then
+		lock_contact = settings.lock_contact
+	else
+		lock_contact = 'no'
+	end
+	if settings.lock_inline then
+		lock_inline = settings.lock_inline
+	else
+		lock_inline = 'no'
+	end
+	if settings.lock_game then
+		lock_game = settings.lock_game
+	else
+		lock_game = 'no'
+	end
+	if settings.lock_text then
+		lock_text = settings.lock_text
+	else
+		lock_text = 'no'
+	end
+	if settings.lock_keyboard then
+		lock_keyboard = settings.lock_keyboard
+	else
+		lock_keyboard = 'no'
+	end
+	if settings.lock_forward then
+		lock_forward = settings.lock_forward
+	else
+		lock_forward = 'no'
+	end
+	if settings.lock_location then
+		lock_location = settings.lock_location
+	else
+		lock_location = 'no'
+	end
+   if settings.lock_document then
+		lock_document = settings.lock_document
+	else
+		lock_document = 'no'
+	end
+	if settings.lock_voice then
+		lock_voice = settings.lock_voice
+	else
+		lock_voice = 'no'
+	end
+	if settings.lock_audio then
+		lock_audio = settings.lock_audio
+	else
+		lock_audio = 'no'
+	end
+	if settings.lock_video then
+		lock_video = settings.lock_video
+	else
+		lock_video = 'no'
+	end
+	if settings.lock_tgservice then
+		lock_tgservice = settings.lock_tgservice
+	else
+		lock_tgservice = 'no'
 	end
 	if settings.lock_link then
 		lock_link = settings.lock_link
@@ -179,7 +197,7 @@ end
 		lock_webpage = 'no'
 	end
   if msg.adduser or msg.joinuser or msg.deluser then
-  if mute_tgservice == "yes" then
+  if lock_tgservice == "yes" then
 del_msg(chat, tonumber(msg.id))
   end
 end
@@ -212,70 +230,70 @@ if msg.edited and lock_edit == "yes" then
 kick_user(user, chat)
     end
   end
-if msg.forward_info_ and mute_forward == "yes" then
+if msg.forward_info_ and lock_forward == "yes" then
  if is_channel then
  del_msg(chat, tonumber(msg.id))
   elseif is_chat then
 kick_user(user, chat)
     end
   end
-if msg.photo_ and mute_photo == "yes" then
+if msg.photo_ and lock_photo == "yes" then
  if is_channel then
  del_msg(chat, tonumber(msg.id))
   elseif is_chat then
 kick_user(user, chat)
    end
 end
-    if msg.video_ and mute_video == "yes" then
+    if msg.video_ and lock_video == "yes" then
  if is_channel then
  del_msg(chat, tonumber(msg.id))
   elseif is_chat then
 kick_user(user, chat)
    end
 end
-    if msg.document_ and mute_document == "yes" then
+    if msg.document_ and lock_document == "yes" then
  if is_channel then
  del_msg(chat, tonumber(msg.id))
   elseif is_chat then
 kick_user(user, chat)
    end
 end
-    if msg.sticker_ and mute_sticker == "yes" then
+    if msg.sticker_ and lock_sticker == "yes" then
  if is_channel then
  del_msg(chat, tonumber(msg.id))
   elseif is_chat then
 kick_user(user, chat)
    end
 end
-    if msg.animation_ and mute_gif == "yes" then
+    if msg.animation_ and lock_gif == "yes" then
  if is_channel then
  del_msg(chat, tonumber(msg.id))
   elseif is_chat then
 kick_user(user, chat)
    end
 end
-    if msg.contact_ and mute_contact == "yes" then
+    if msg.contact_ and lock_contact == "yes" then
  if is_channel then
  del_msg(chat, tonumber(msg.id))
   elseif is_chat then
 kick_user(user, chat)
    end
 end
-    if msg.location_ and mute_location == "yes" then
+    if msg.location_ and lock_location == "yes" then
  if is_channel then
  del_msg(chat, tonumber(msg.id))
   elseif is_chat then
 kick_user(user, chat)
    end
 end
-    if msg.voice_ and mute_voice == "yes" then
+    if msg.voice_ and lock_voice == "yes" then
  if is_channel then
  del_msg(chat, tonumber(msg.id))
   elseif is_chat then
 kick_user(user, chat)
    end
 end
-   if msg.content_ and mute_keyboard == "yes" then
+   if msg.content_ and lock_keyboard == "yes" then
   if msg.reply_markup_ and  msg.reply_markup_.ID == "ReplyMarkupInlineKeyboard" then
  if is_channel then
  del_msg(chat, tonumber(msg.id))
@@ -284,21 +302,21 @@ kick_user(user, chat)
       end
    end
 end
-    if tonumber(msg.via_bot_user_id_) ~= 0 and mute_inline == "yes" then
+    if tonumber(msg.via_bot_user_id_) ~= 0 and lock_inline == "yes" then
  if is_channel then
  del_msg(chat, tonumber(msg.id))
   elseif is_chat then
 kick_user(user, chat)
    end
 end
-    if msg.game_ and mute_game == "yes" then
+    if msg.game_ and lock_game == "yes" then
  if is_channel then
  del_msg(chat, tonumber(msg.id))
   elseif is_chat then
 kick_user(user, chat)
    end
 end
-    if msg.audio_ and mute_audio == "yes" then
+    if msg.audio_ and lock_audio == "yes" then
  if is_channel then
  del_msg(chat, tonumber(msg.id))
   elseif is_chat then
@@ -449,7 +467,7 @@ kick_user(user, chat)
    end
 end
 if msg.text:match("(.*)")
-and mute_text == "yes" then
+and lock_text == "yes" then
  if is_channel then
  del_msg(chat, tonumber(msg.id))
   elseif is_chat then
@@ -502,7 +520,7 @@ kick_user(user, chat)
    end
 end
 if msg.text:match("(.*)")
-and mute_text == "yes" then
+and lock_text == "yes" then
  if is_channel then
  del_msg(chat, tonumber(msg.id))
   elseif is_chat then
@@ -510,7 +528,7 @@ kick_user(user, chat)
      end
    end
 end
-if mute_all == "yes" then 
+if lock_all == "yes" then 
  if is_channel then
  del_msg(chat, tonumber(msg.id))
   elseif is_chat then

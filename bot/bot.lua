@@ -100,6 +100,9 @@ function create_config( )
 		"setnerkh",
 		"cleanbot",
 		"addkick",
+		"fun",
+		"info",
+		"idprof",
 		"autodelcache"
 	},
     sudo_users = {

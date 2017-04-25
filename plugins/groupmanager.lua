@@ -40,7 +40,7 @@ end
           ads = 'no',
           fosh = 'no',
           welcome = 'no',
-		  lock_fwd = 'no',
+          lock_fwd = 'no',
           lock_audio = 'no',
           lock_video = 'no',
           lock_contact = 'no',
@@ -52,7 +52,7 @@ end
           lock_sticker = 'no',
           lock_voice = 'no',
           lock_all = 'no',
-		  lock_keyboard = 'no'
+          lock_keyboard = 'no'
           },
       }
   save_data(_config.moderation.data, data)
@@ -814,7 +814,7 @@ end
 local lock_ads = data[tostring(target)]["settings"]["ads"]
 if lock_ads == "no" then
 if not lang then
- return "*Fosh* _Posting Is Not Locked_" 
+ return "*Ads* _Posting Is Not Locked_" 
 elseif lang then
  return "ارسال تبلیغات در گروه ممنوع نمیباشد"
 end
@@ -869,7 +869,7 @@ else
 end 
 end
 
-local lock_fosh = data[tostring(target)]["settings"]["english"]
+local lock_fosh = data[tostring(target)]["settings"]["fosh"]
 if lock_fosh == "no" then
 if not lang then
  return "*Fosh* _Posting Is Not Locked_" 

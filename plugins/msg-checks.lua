@@ -18,29 +18,6 @@ local lang = redis:get(hash)
       end
    end
 end
-if not redis:get('autodeltime') then
-redis:setex('autodeltime', 14400, true)
-     run_bash("rm -rf ~/.telegram-cli/data/sticker/*")
-     run_bash("rm -rf ~/.telegram-cli/data/photo/*")
-     run_bash("rm -rf ~/.telegram-cli/data/animation/*")
-     run_bash("rm -rf ~/.telegram-cli/data/video/*")
-     run_bash("rm -rf ~/.telegram-cli/data/audio/*")
-     run_bash("rm -rf ~/.telegram-cli/data/voice/*")
-     run_bash("rm -rf ~/.telegram-cli/data/temp/*")
-     run_bash("rm -rf ~/.telegram-cli/data/thumb/*")
-     run_bash("rm -rf ~/.telegram-cli/data/document/*")
-     run_bash("rm -rf ~/.telegram-cli/data/profile_photo/*")
-     run_bash("rm -rf ~/.telegram-cli/data/encrypted/*")
-	 run_bash("rm -rf ~/BDReborn/photos/*")
-end
-if not redis:get('relaunch') then
-redis:setex('relaunch', 3600, true)
-     run_bash("killall screen")
-     run_bash("killall tmux")
-     run_bash("killall tg")
-	 run_bash("killall -9 bash")
-     run_bash("screen ./autobd.sh")	 
-end
     if data[tostring(chat)] and data[tostring(chat)]['settings'] then
 		settings = data[tostring(chat)]['settings']
 	else

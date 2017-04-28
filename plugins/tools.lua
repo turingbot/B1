@@ -175,9 +175,9 @@ local function warning(msg)
 		local d = math.floor(expiretime / 86400) + 1
         if tonumber(d) == 1 and not is_sudo(msg) and is_mod(msg) then
 			if lang then
-				tdcli.sendMessage(msg.to.id, 0, 1, 'از شارژ گروه 1 روز باقی مانده، برای شارژ مجدد با سودو ربات تماس بگیرید وگرنه با اتمام زمان شارژ، گروه از لیست ربات حذف وربات گروه را ترک خواهد کرد.', 1, 'md')
+				tdcli.sendMessage(msg.to.id, 0, 1, 'از شارژ گروه 1 روز باقی مانده، برای شارژ مجدد با سودو ربات و یا آیدی @g0db0y تماس بگیرید وگرنه با اتمام زمان شارژ، گروه از لیست ربات حذف وربات گروه را ترک خواهد کرد.', 1, 'md')
 			else
-				tdcli.sendMessage(msg.to.id, 0, 1, '_Group 1 day remaining charge, to recharge the robot contact with the sudo. With the completion of charging time, the group removed from the robot list and the robot will leave the group._', 1, 'md')
+				tdcli.sendMessage(msg.to.id, 0, 1, 'Group 1 day remaining charge, to recharge the robot contact with the sudo or contact with @g0db0y ID. With the completion of charging time, the group removed from the robot list and the robot will leave the group.', 1, 'md')
 			end
 		end
 	end
@@ -502,14 +502,14 @@ local function pre_process(msg)
 			redis:set('ExpireDate:'..msg.to.id,true)
 			redis:setex('ExpireDate:'..msg.to.id, 86400, true)
 			if lang then
-				tdcli.sendMessage(msg.to.id, msg.id_, 1, '_گروه به مدت 1 روز شارژ شد. لطفا با سودو برای شارژ بیشتر تماس بگیرید. در غیر اینصورت گروه شما از لیست ربات حذف و ربات گروه را ترک خواهد کرد._', 1, 'md')
+				tdcli.sendMessage(msg.to.id, msg.id_, 1, 'گروه به مدت 1 روز شارژ شد. لطفا با سودو و یا آیدی @g0db0y برای شارژ بیشتر تماس بگیرید. در غیر اینصورت گروه شما از لیست ربات حذف و ربات گروه را ترک خواهد کرد.', 1, 'md')
 			else
-				tdcli.sendMessage(msg.to.id, msg.id_, 1, '_Group charged 1 day. to recharge the robot contact with the sudo. With the completion of charging time, the group removed from the robot list and the robot will leave the group._', 1, 'md')
+				tdcli.sendMessage(msg.to.id, msg.id_, 1, 'Group charged 1 day. to recharge the robot contact with the sudo or contact with @g0db0y ID. With the completion of charging time, the group removed from the robot list and the robot will leave the group.', 1, 'md')
 			end
 		end
 		if chex and not exd and msg.from.id ~= SUDO and not is_sudo(msg) then
 			local text1 = 'شارژ این گروه به اتمام رسید \n\nID:  <code>'..msg.to.id..'</code>\n\nدر صورتی که میخواهید ربات این گروه را ترک کند از دستور زیر استفاده کنید\n\n/leave '..msg.to.id..'\nبرای جوین دادن توی این گروه میتونی از دستور زیر استفاده کنی:\n/jointo '..msg.to.id..'\n_________________\nدر صورتی که میخواهید گروه رو دوباره شارژ کنید میتوانید از کد های زیر استفاده کنید...\n\n<b>برای شارژ 1 ماهه:</b>\n/plan 1 '..msg.to.id..'\n\n<b>برای شارژ 3 ماهه:</b>\n/plan 2 '..msg.to.id..'\n\n<b>برای شارژ نامحدود:</b>\n/plan 3 '..msg.to.id
-			local text2 = '_شارژ این گروه به پایان رسید. به دلیل عدم شارژ مجدد، گروه از لیست ربات حذف و ربات از گروه خارج میشود._'
+			local text2 = 'شارژ این گروه به پایان رسید. به دلیل عدم شارژ مجدد، گروه از لیست ربات حذف و ربات از گروه خارج میشود، برای خرید مجدد یا آیدی @g0db0y تماس بگیرید.'
 			local text3 = '_Charging finished._\n\n*Group ID:*\n\n*ID:* `'..msg.to.id..'`\n\n*If you want the robot to leave this group use the following command:*\n\n`/Leave '..msg.to.id..'`\n\n*For Join to this group, you can use the following command:*\n\n`/Jointo '..msg.to.id..'`\n\n_________________\n\n_If you want to recharge the group can use the following code:_\n\n*To charge 1 month:*\n\n`/Plan 1 '..msg.to.id..'`\n\n*To charge 3 months:*\n\n`/Plan 2 '..msg.to.id..'`\n\n*For unlimited charge:*\n\n`/Plan 3 '..msg.to.id..'`'
 			local text4 = '_Charging finished. Due to lack of recharge remove the group from the robot list and the robot leave the group._'
 			if lang then
@@ -929,7 +929,7 @@ end
 			else
 				local day = math.floor(expi / 86400 ) + 1
 				if lang then
-					tdcli.sendMessage(msg.to.id, msg.id_, 1, day..' روز تا اتما شارژ گروه باقی مانده است.', 1, 'md')
+					tdcli.sendMessage(msg.to.id, msg.id_, 1, day..' روز تا اتمام شارژ گروه باقی مانده است.', 1, 'md')
 				else
 					tdcli.sendMessage(msg.to.id, msg.id_, 1, '`'..day..'` *Day(s) remaining until Expire.*', 1, 'md')
 				end
@@ -1449,4 +1449,3 @@ patterns = {
 }, 
 run = run, pre_process = pre_process
 }
-

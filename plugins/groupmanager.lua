@@ -40,7 +40,7 @@ end
           ads = 'no',
           fosh = 'no',
           welcome = 'no',
-          lock_fwd = 'no',
+		  lock_fwd = 'no',
           lock_audio = 'no',
           lock_video = 'no',
           lock_contact = 'no',
@@ -52,7 +52,7 @@ end
           lock_sticker = 'no',
           lock_voice = 'no',
           lock_all = 'no',
-          lock_keyboard = 'no'
+		  lock_keyboard = 'no'
           },
       }
   save_data(_config.moderation.data, data)
@@ -172,13 +172,13 @@ local lang = redis:get(hash)
   if not lang then
     return "_No_ *moderator* _in this group_"
 else
-   return "در حال حاضر هیچ مدیری برای گروه انتخاب نشده است"
+   return "در حال حاضر هیچ مدیری برای ربات انتخاب نشده است"
   end
 end
 if not lang then
    message = '*List of moderators :*\n'
 else
-   message = '*لیست مدیران گروه :*\n'
+   message = '*لیست مدیران ربات :*\n'
 end
   for k,v in pairs(data[tostring(msg.to.id)]['mods'])
 do
@@ -205,13 +205,13 @@ end
  if not lang then
     return "_No_ *owner* _in this group_"
 else
-    return "در حال حاضر هیچ مالکی برای گروه انتخاب نشده است"
+    return "در حال حاضر هیچ مدیر ارشدی برای ربات انتخاب نشده است"
   end
 end
 if not lang then
    message = '*List of moderators :*\n'
 else
-   message = '*لیست مالکین گروه :*\n'
+   message = '*لیست مدیران ارشد ربات :*\n'
 end
   for k,v in pairs(data[tostring(msg.to.id)]['owners']) do
     message = message ..i.. '- '..v..' [' ..k.. '] \n'
@@ -248,7 +248,7 @@ if administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] then
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is already a_ *group owner*", 0, "md")
    else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل صاحب گروه بود*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدیر ارشد ربات بود*", 0, "md")
       end
    end
 administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = user_name
@@ -256,7 +256,7 @@ administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = user_name
    if not lang then
   return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is now the_ *group owner*", 0, "md")
    else
-  return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *به مقام صاحب گروه منتصب شد*", 0, "md")
+  return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *به مقام مدیر ارشد ربات منتصب شد و می تواند به ربات دستور دهد*", 0, "md")
    end
 end
 tdcli_function ({
@@ -278,7 +278,7 @@ if administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is already a_ *moderator*", 0, "md")
 else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدیر گروه بود*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدير ربات بود*", 0, "md")
       end
    end
 administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = user_name
@@ -286,7 +286,7 @@ administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = user_name
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been_ *promoted*", 0, "md")
    else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *به مقام مدیر گروه منتصب شد*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *به مقام مدير ربات منتصب شد و می تواند به ربات دستور دهد*", 0, "md")
    end
 end
 tdcli_function ({
@@ -308,7 +308,7 @@ if not administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] then
    if not lang then
 return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is not a_ *group owner*", 0, "md")
    else
-return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* *از قبل صاحب گروه نبود*", 0, "md")
+return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* *از قبل مدیر ارشد ربات نبود*", 0, "md")
       end
    end
 administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = nil
@@ -316,7 +316,7 @@ administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = nil
    if not lang then
 return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is no longer a_ *group owner*", 0, "md")
     else
-return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از مقام صاحب گروه برکنار شد*", 0, "md")
+return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از مقام مدیر ارشد ربات برکنار شد و نمی تواند به ربات دستور دهد*", 0, "md")
    end
 end
 tdcli_function ({
@@ -336,7 +336,7 @@ if not administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is not a_ *moderator*", 0, "md")
     else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدیر گروه نبود*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدير ربات نبود*", 0, "md")
    end
   end
 administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = nil
@@ -344,7 +344,7 @@ administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = nil
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been_ *demoted*", 0, "md")
    else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از مقام مدیر گروه برکنار شد*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از مقام مدير ربات برکنار شد و نمی تواند به ربات دستور دهد*", 0, "md")
    end
 end
 tdcli_function ({
@@ -394,7 +394,7 @@ if administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] then
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is already a_ *group owner*", 0, "md")
    else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل صاحب گروه بود*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدیر ارشد ربات بود*", 0, "md")
       end
    end
 administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = user_name
@@ -402,7 +402,7 @@ administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = user_name
    if not lang then
   return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is now the_ *group owner*", 0, "md")
    else
-  return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *به مقام صاحب گروه منتصب شد*", 0, "md")
+  return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *به مقام مدیر ارشد ربات منتصب شد و می تواند به ربات دستور دهد*", 0, "md")
    end
 end
   if cmd == "promote" then
@@ -410,7 +410,7 @@ if administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is already a_ *moderator*", 0, "md")
 else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدیر گروه بود*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدير ربات بود*", 0, "md")
       end
    end
 administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = user_name
@@ -418,7 +418,7 @@ administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = user_name
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been_ *promoted*", 0, "md")
    else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *به مقام مدیر گروه منتصب شد*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *به مقام مدير ربات منتصب شد و می تواند به ربات دستور دهد*", 0, "md")
    end
 end
    if cmd == "remowner" then
@@ -426,7 +426,7 @@ if not administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] then
    if not lang then
 return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is not a_ *group owner*", 0, "md")
    else
-return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* *از قبل صاحب گروه نبود*", 0, "md")
+return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* *از قبل مدیر ارشد ربات نبود*", 0, "md")
       end
    end
 administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = nil
@@ -434,7 +434,7 @@ administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = nil
    if not lang then
 return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is no longer a_ *group owner*", 0, "md")
     else
-return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از مقام صاحب گروه برکنار شد*", 0, "md")
+return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از مقام مدیر ارشد ربات برکنار شد و نمی تواند به ربات دستور دهد*", 0, "md")
    end
 end
    if cmd == "demote" then
@@ -442,7 +442,7 @@ if not administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is not a_ *moderator*", 0, "md")
     else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدیر گروه نبود*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدير ربات نبود*", 0, "md")
    end
   end
 administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = nil
@@ -450,7 +450,7 @@ administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = nil
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been_ *demoted*", 0, "md")
    else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از مقام مدیر گروه برکنار شد*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از مقام مدير ربات برکنار شد و نمی تواند به ربات دستور دهد*", 0, "md")
    end
 end
    if cmd == "id" then
@@ -502,7 +502,7 @@ end
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is already a_ *group owner*", 0, "md")
    else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل صاحب گروه بود*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدیر ارشد ربات بود*", 0, "md")
       end
    end
 administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = user_name
@@ -510,7 +510,7 @@ administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = user_name
    if not lang then
   return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is now the_ *group owner*", 0, "md")
    else
-  return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *به مقام صاحب گروه منتصب شد*", 0, "md")
+  return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *به مقام مدیر ارشد ربات منتصب شد و می تواند به ربات دستور دهد*", 0, "md")
    end
 end
   if cmd == "promote" then
@@ -518,7 +518,7 @@ if administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is already a_ *moderator*", 0, "md")
 else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدیر گروه بود*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدير ربات بود*", 0, "md")
       end
    end
 administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = user_name
@@ -526,7 +526,7 @@ administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = user_name
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been_ *promoted*", 0, "md")
    else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *به مقام مدیر گروه منتصب شد*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *به مقام مدير ربات منتصب شد و می تواند به ربات دستور دهد*", 0, "md")
    end
 end
    if cmd == "remowner" then
@@ -534,7 +534,7 @@ if not administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] then
    if not lang then
 return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is not a_ *group owner*", 0, "md")
    else
-return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* *از قبل صاحب گروه نبود*", 0, "md")
+return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* *از قبل مدیر ارشد ربات نبود*", 0, "md")
       end
    end
 administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = nil
@@ -542,7 +542,7 @@ administration[tostring(arg.chat_id)]['owners'][tostring(data.id_)] = nil
    if not lang then
 return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is no longer a_ *group owner*", 0, "md")
     else
-return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از مقام صاحب گروه برکنار شد*", 0, "md")
+return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از مقام مدیر ارشد ربات برکنار شد و نمی تواند به ربات دستور دهد*", 0, "md")
    end
 end
    if cmd == "demote" then
@@ -550,7 +550,7 @@ if not administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] then
     if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _is not a_ *moderator*", 0, "md")
     else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدیر گروه نبود*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از قبل مدير ربات نبود*", 0, "md")
    end
   end
 administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = nil
@@ -558,7 +558,7 @@ administration[tostring(arg.chat_id)]['mods'][tostring(data.id_)] = nil
    if not lang then
     return tdcli.sendMessage(arg.chat_id, "", 0, "_User_ "..user_name.." *"..data.id_.."* _has been_ *demoted*", 0, "md")
    else
-    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از مقام مدیر گروه برکنار شد*", 0, "md")
+    return tdcli.sendMessage(arg.chat_id, "", 0, "_کاربر_ "..user_name.." *"..data.id_.."* *از مقام مدير ربات برکنار شد و نمی تواند به ربات دستور دهد*", 0, "md")
    end
 end
     if cmd == "whois" then
@@ -814,7 +814,7 @@ end
 local lock_ads = data[tostring(target)]["settings"]["ads"]
 if lock_ads == "no" then
 if not lang then
- return "*Ads* _Posting Is Not Locked_" 
+ return "*Fosh* _Posting Is Not Locked_" 
 elseif lang then
  return "ارسال تبلیغات در گروه ممنوع نمیباشد"
 end
@@ -2732,7 +2732,7 @@ end
 if matches[1] == "rem" or matches[1] == "لغو نصب" then
 return modrem(msg)
 end
-if matches[1] == "setowner" and is_admin(msg) or  matches[1] == "تنظیم مالک" and is_admin(msg) then
+if matches[1] == "setowner" and is_admin(msg) or  matches[1] == "تنظیم مدیر ارشد" and is_admin(msg) then
 if not matches[2] and msg.reply_id then
     tdcli_function ({
       ID = "GetMessage",
@@ -2753,7 +2753,7 @@ tdcli_function ({
     }, action_by_username, {chat_id=msg.to.id,username=matches[2],cmd="setowner"})
       end
    end
-if matches[1] == "remowner" and is_admin(msg) or matches[1] == "حذف مالک" and is_admin(msg) then
+if matches[1] == "remowner" and is_admin(msg) or matches[1] == "حذف مدیر ارشد" and is_admin(msg) then
 if not matches[2] and msg.reply_id then
     tdcli_function ({
       ID = "GetMessage",
@@ -3172,7 +3172,7 @@ tdcli_function ({
             if not lang then
 					return "_No_ *moderators* _in this group_"
              else
-                return "هیچ مدیری برای گروه انتخاب نشده است"
+                return "هیچ مدیری برای ربات انتخاب نشده است"
 				end
             end
 				for k,v in pairs(data[tostring(chat)]['mods']) do
@@ -3182,7 +3182,7 @@ tdcli_function ({
             if not lang then
 				return "_All_ *moderators* _has been demoted_"
           else
-            return "تمام مدیران گروه تنزیل مقام شدند"
+            return "تمام مدیران ربات تنزیل مقام شدند"
 			end
          end
 			if matches[2] == 'filterlist' or matches[2] == 'لیست فیلتر' then
@@ -3257,12 +3257,12 @@ tdcli_function ({
 		   	end
         end
 		if matches[1]:lower() == 'clean' and is_admin(msg) or matches[1]:lower() == 'پاکسازی' and is_admin(msg) then
-			if matches[2] == 'owners' or matches[2] == 'مالکان' then
+			if matches[2] == 'owners' or matches[2] == 'مدیران ارشد' then
 				if next(data[tostring(chat)]['owners']) == nil then
              if not lang then
 					return "_No_ *owners* _in this group_"
             else
-                return "مالکی برای گروه انتخاب نشده است"
+                return "مدیر ارشدی برای ربات انتخاب نشده است"
             end
 				end
 				for k,v in pairs(data[tostring(chat)]['owners']) do
@@ -3272,7 +3272,7 @@ tdcli_function ({
             if not lang then
 				return "_All_ *owners* _has been demoted_"
            else
-            return "تمامی مالکان گروه تنزیل مقام شدند"
+            return "تمامی مدیران ارشد ربات تنزیل مقام شدند"
           end
 			end
      end
@@ -3320,7 +3320,7 @@ end
 if matches[1] == "modlist" or matches[1] == "لیست مدیران" then
 return modlist(msg)
 end
-if matches[1] == "ownerlist" and is_owner(msg) or  matches[1] == "لیست مالکان" and is_owner(msg)  then
+if matches[1] == "ownerlist" and is_owner(msg) or  matches[1] == "لیست مدیران ارشد" and is_owner(msg)  then
 return ownerlist(msg)
 end
 
@@ -3346,16 +3346,16 @@ text = [[
 🔹حذف گروه از دیتابیس ربات
 
 *!setowner* `[username|id|reply]` 
-انتخاب مالک گروه(قابل انتخاب چند مالک)
+انتخاب مدیر ارشد ربات (قابل انتخاب چند مدیر ارشد)
 
 *!remowner* `[username|id|reply]` 
-🔹حذف کردن فرد از فهرست مالکان گروه
+🔹حذف کردن فرد از فهرست مدیران ارشد ربات
 
 *!promote* `[username|id|reply]` 
-🔹ارتقا مقام کاربر به مدیر گروه
+🔹ارتقا مقام کاربر به مدیر ربات
 
 *!demote* `[username|id|reply]` 
-🔹تنزیل مقام مدیر به کاربر
+🔹تنزیل مقام مدیر ربات به کاربر معمولی
 
 *!setflood* `[2-200]`
 🔹تنظیم حداکثر تعداد پیام مکرر
@@ -3411,7 +3411,6 @@ text = [[
 *!settings*
 🔹نمایش تنظیمات گروه
 
-
 *!silentlist*
 🔹نمایش فهرست افرادی که در حالت عدم توانایی چت قرار دارند
 
@@ -3425,10 +3424,10 @@ text = [[
 🔹نمایش افراد مسدود شده از گروه و گروه های ربات
 
 *!ownerlist*
-🔹نمایش فهرست مالکان گروه 
+🔹نمایش فهرست مدیران ارشد ربات
 
 *!modlist* 
-🔹نمایش فهرست مدیران گروه
+🔹نمایش فهرست مدیران ربات
 
 *!rules*
 🔹نمایش قوانین گروه
@@ -3492,17 +3491,17 @@ text = [[
 *لغو نصب*
 🔹حذف گروه از دیتابیس ربات
 
-*تنظیم مالک [یوزرنیم - ایدی - ریپلای]*
-🔹انتخاب مدیر گروه(قابل انتخاب چند مالک)
+*تنظیم مدیر ارشد [یوزرنیم - ایدی - ریپلای]*
+انتخاب مدیر ارشد ربات (قابل انتخاب چند مدیر ارشد)
 
-*حذف مالک [یوزرنیم - ایدی - ریپلای]*
-🔹حذف کردن فرد از فهرست مدیران گروه
+*حذف مدیر ارشد [یوزرنیم - ایدی - ریپلای]*
+🔹حذف کردن فرد از فهرست مدیران ارشد ربات
 
-*ترفيع مقام [يوزرنيم - ايدي - ريپلاي]*
-🔹ارتقا مقام کاربر به معاون گروه
+*ترفیع مقام [يوزرنيم - ايدي - ريپلاي]*
+🔹ارتقا مقام کاربر به مدیر ربات
 
 *تنزل مقام [يوزرنيم - ايدي - ريپلاي]*
-🔹تنزیل مقام مدیر به کاربر
+🔹تنزیل مقام مدیر ربات به کاربر معمولی
 
 *حساسیت اسپم [2-200]*
 🔹تنظیم حداکثر تعداد پیام مکرر
@@ -3570,11 +3569,11 @@ text = [[
 *لیست مسدود کلی*
 🔹نمایش افراد مسدود شده از گروه و گروه های ربات
 
-*لیست مالکان*
-🔹نمایش فهرست مالکان گروه
+*لیست مدیران ارشد*
+🔹نمایش فهرست مدیران ارشد ربات
 
 *لیست مدیران*
-🔹نمایش فهرست مدیران گروه
+🔹نمایش فهرست مدیران ربات
 
 *قانون*
 🔹نمایش قوانین گروه
@@ -3639,17 +3638,17 @@ text = [[
 *لغو نصب*
 🔹حذف گروه از دیتابیس ربات
 
-*تنظیم مالک [یوزرنیم - ایدی - ریپلای]*
-🔹انتخاب مدیر گروه(قابل انتخاب چند مالک)
+*تنظیم مدیر ارشد [یوزرنیم - ایدی - ریپلای]*
+انتخاب مدیر ارشد ربات (قابل انتخاب چند مدیر ارشد)
 
-*حذف مالک [یوزرنیم - ایدی - ریپلای]*
-🔹حذف کردن فرد از فهرست مدیران گروه
+*حذف مدیر ارشد [یوزرنیم - ایدی - ریپلای]*
+🔹حذف کردن فرد از فهرست مدیران ارشد ربات
 
-*ترفيع مقام [يوزرنيم - ايدي - ريپلاي]*
-🔹ارتقا مقام کاربر به معاون گروه
+*ترفیع مقام [يوزرنيم - ايدي - ريپلاي]*
+🔹ارتقا مقام کاربر به مدیر ربات
 
 *تنزل مقام [يوزرنيم - ايدي - ريپلاي]*
-🔹تنزیل مقام مدیر به کاربر
+🔹تنزیل مقام مدیر ربات به کاربر معمولی
 
 *حساسیت اسپم [2-200]*
 🔹تنظیم حداکثر تعداد پیام مکرر
@@ -3717,11 +3716,11 @@ text = [[
 *لیست مسدود کلی*
 🔹نمایش افراد مسدود شده از گروه و گروه های ربات
 
-*لیست مالکان*
-🔹نمایش فهرست مالکان گروه
+*لیست مدیران ارشد*
+🔹نمایش فهرست مدیران ارشد ربات
 
 *لیست مدیران*
-🔹نمایش فهرست مدیران گروه
+🔹نمایش فهرست مدیران ربات
 
 *قانون*
 🔹نمایش قوانین گروه
@@ -3911,13 +3910,13 @@ patterns ={
 "^[!/#](rem)$",
 "^(لغو نصب)$",
 "^[!/#](setowner)$",
-"^(تنظیم مالک)$",
+"^(تنظیم مدیر ارشد)$",
 "^[!/#](setowner) (.*)$",
-"^(تنظیم مالک) (.*)$",
+"^(تنظیم مدیر ارشد) (.*)$",
 "^[!/#](remowner)$",
-"^(حذف مالک)$",
+"^(حذف مدیر ارشد)$",
 "^[!/#](remowner) (.*)$",
-"^(حذف مالک) (.*)$",
+"^(حذف مدیر ارشد) (.*)$",
 "^[!/#](promote)$",
 "^(ترفیع مقام)$",
 "^[!/#](promote) (.*)$",
@@ -3929,7 +3928,7 @@ patterns ={
 "^[!/#](modlist)$",
 "^(لیست مدیران)$",
 "^[!/#](ownerlist)$",
-"^(لیست مالکان)$",
+"^(لیست مدیران ارشد)$",
 "^[!/#](lock) (.*)$",
 "^(قفل) (.*)$",
 "^[!/#](unlock) (.*)$",

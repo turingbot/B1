@@ -21,21 +21,21 @@ end
   if not lang then
   return tdcli.sendMessage(TM.chat_id, "", 0, "_I can't warn_ *my self*", 0, "md")
    else
-  return tdcli.sendMessage(TM.chat_id, "", 0, "*من نمیتوانم به خودم اخطار دهم*", 0, "md")
+  return tdcli.sendMessage(TM.chat_id, "", 0, "*من نمیتوانم به خودم اخطار دهم.*", 0, "md")
          end
      end
    if is_mod1(TM.chat_id, BD.id_) and not is_admin1(msg.from.id)then
   if not lang then
   return tdcli.sendMessage(TM.chat_id, "", 0, "_You can't warn_ *mods,owners and bot admins*", 0, "md")
    else
-  return tdcli.sendMessage(TM.chat_id, "", 0, "*شما نمیتوانید به مدیران،صاحبان گروه، و ادمین های ربات اخطار دهید*", 0, "md")
+  return tdcli.sendMessage(TM.chat_id, "", 0, "*شما نمیتوانید به مدیران،صاحبان گروه، و ادمین های ربات اخطار دهید.*", 0, "md")
          end
      end
    if is_admin1(BD.id_)then
   if not lang then
   return tdcli.sendMessage(TM.chat_id, "", 0, "_You can't warn_ *bot admins*", 0, "md")
    else
-  return tdcli.sendMessage(TM.chat_id, "", 0, "*شما نمیتوانید به ادمین های ربات اخطار دهید*", 0, "md")
+  return tdcli.sendMessage(TM.chat_id, "", 0, "*شما نمیتوانید به ادمین های ربات اخطار دهید.*", 0, "md")
          end
      end
 if tonumber(warnhash) == tonumber(max_warn) then
@@ -44,14 +44,14 @@ redis:del(hashwarn)
     if not lang then
     return tdcli.sendMessage(TM.chat_id, "", 0, "_User_ "..user_name.." *"..BD.id_.."* _has been_ *kicked* _because max warning_\nNumber of warn :_ "..warnhash.."/"..max_warn.."", 0, "md")
     else
-    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* به دلیل دریافت اخطار بیش از حد اخراج شد\nتعداد اخطار ها : "..warnhash.."/"..max_warn.."", 0, "md")
+    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* به دلیل دریافت اخطار بیش از حد اخراج شد.\n\n> *تعداد اخطار ها : "..warnhash.."/"..max_warn.."*", 0, "md")
     end
 else
 redis:set(hashwarn, setwarn)
     if not lang then
     return tdcli.sendMessage(TM.chat_id, "", 0, "_User_ "..user_name.." *"..BD.id_.."*\n_You've_ "..warnhash.." _of_ "..max_warn.." _Warns!_", 0, "md")
     else
-    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* *شما یک اخطار دریافت کردید*\n*تعداد اخطار های شما : "..warnhash.."/"..max_warn.."*", 0, "md")
+    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* *شما یک اخطار دریافت کردید.*\n\n> *تعداد اخطار های شما : "..warnhash.."/"..max_warn.."*", 0, "md")
     end
   end
 end
@@ -75,14 +75,14 @@ if not redis:get(hashwarn) then
    if not lang then
     return tdcli.sendMessage(TM.chat_id, "", 0, "_User_ "..user_name.." *"..BD.id_.."* _don't have_ *warning*", 0, "md")
    else
-    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* *هیچ اخطاری دریافت نکرده*", 0, "md")
+    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* *هیچ اخطاری دریافت نکرده.*", 0, "md")
     end
   else
 redis:del(hashwarn)
    if not lang then
     return tdcli.sendMessage(TM.chat_id, "", 0, "_All warn of_ "..user_name.." *"..BD.id_.."* _has been_ *cleaned*", 0, "md")
    else
-    return tdcli.sendMessage(TM.chat_id, "", 0, "_تمامی اخطار های_ "..user_name.." *"..BD.id_.."* *پاک شدند*", 0, "md")
+    return tdcli.sendMessage(TM.chat_id, "", 0, "_تمامی اخطار های_ "..user_name.." *"..BD.id_.."* *پاک شدند.*", 0, "md")
       end
    end
 end
@@ -119,7 +119,7 @@ end
   if not lang then
   return tdcli.sendMessage(TM.chat_id, "", 0, "_I can't warn_ *my self*", 0, "md")
    else
-  return tdcli.sendMessage(TM.chat_id, "", 0, "*من نمیتوانم به خودم اخطار دهم*", 0, "md")
+  return tdcli.sendMessage(TM.chat_id, "", 0, "*من نمیتوانم به خودم اخطار دهم.*", 0, "md")
          end
      end
    if is_mod1(TM.chat_id, BD.id_) and not is_admin1(msg.from.id)then
@@ -133,7 +133,7 @@ end
   if not lang then
   return tdcli.sendMessage(TM.chat_id, "", 0, "_You can't warn_ *bot admins*", 0, "md")
    else
-  return tdcli.sendMessage(TM.chat_id, "", 0, "*شما نمیتوانید به ادمین های ربات اخطار دهید*", 0, "md")
+  return tdcli.sendMessage(TM.chat_id, "", 0, "*شما نمیتوانید به ادمین های ربات اخطار دهید.*", 0, "md")
          end
      end
 if tonumber(warnhash) == tonumber(max_warn) then
@@ -142,14 +142,14 @@ redis:del(hashwarn)
     if not lang then
     return tdcli.sendMessage(TM.chat_id, "", 0, "_User_ "..user_name.." *"..BD.id_.."* _has been_ *kicked* _because max warning_\nNumber of warn :_ "..warnhash.."/"..max_warn.."", 0, "md")
     else
-    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* به دلیل دریافت اخطار بیش از حد اخراج شد\nتعداد اخطار ها : "..warnhash.."/"..max_warn.."", 0, "md")
+    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* به دلیل دریافت اخطار بیش از حد اخراج شد.\n\n> *تعداد اخطار ها : "..warnhash.."/"..max_warn.."*", 0, "md")
     end
 else
 redis:set(hashwarn, setwarn)
     if not lang then
     return tdcli.sendMessage(TM.chat_id, "", 0, "_User_ "..user_name.." *"..BD.id_.."*\n_You've_ "..warnhash.." _of_ "..max_warn.." _Warns!_", 0, "md")
     else
-    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* *شما یک اخطار دریافت کردید*\n*تعداد اخطار های شما : "..warnhash.."/"..max_warn.."*", 0, "md")
+    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* *شما یک اخطار دریافت کردید*\n\n> *تعداد اخطار های شما : "..warnhash.."/"..max_warn.."*", 0, "md")
     end
   end
 end
@@ -158,14 +158,14 @@ if not redis:get(hashwarn) then
    if not lang then
     return tdcli.sendMessage(TM.chat_id, "", 0, "_User_ "..user_name.." *"..BD.id_.."* _don't have_ *warning*", 0, "md")
    else
-    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* *هیچ اخطاری دریافت نکرده*", 0, "md")
+    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* *هیچ اخطاری دریافت نکرده.*", 0, "md")
     end
   else
 redis:del(hashwarn)
    if not lang then
     return tdcli.sendMessage(TM.chat_id, "", 0, "_All warn of_ "..user_name.." *"..BD.id_.."* _has been_ *cleaned*", 0, "md")
    else
-    return tdcli.sendMessage(TM.chat_id, "", 0, "_تمامی اخطار های_ "..user_name.." *"..BD.id_.."* *پاک شدند*", 0, "md")
+    return tdcli.sendMessage(TM.chat_id, "", 0, "_تمامی اخطار های_ "..user_name.." *"..BD.id_.."* *پاک شدند.*", 0, "md")
     end
   end
 end
@@ -197,21 +197,21 @@ end
   if not lang then
   return tdcli.sendMessage(TM.chat_id, "", 0, "_I can't warn_ *my self*", 0, "md")
    else
-  return tdcli.sendMessage(TM.chat_id, "", 0, "*من نمیتوانم به خودم اخطار دهم*", 0, "md")
+  return tdcli.sendMessage(TM.chat_id, "", 0, "*من نمیتوانم به خودم اخطار دهم.*", 0, "md")
          end
      end
    if is_mod1(TM.chat_id, BD.id_) and not is_admin1(msg.from.id)then
   if not lang then
   return tdcli.sendMessage(TM.chat_id, "", 0, "_You can't warn_ *mods,owners and bot admins*", 0, "md")
    else
-  return tdcli.sendMessage(TM.chat_id, "", 0, "*شما نمیتوانید به مدیران،صاحبان گروه، و ادمین های ربات اخطار دهید*", 0, "md")
+  return tdcli.sendMessage(TM.chat_id, "", 0, "*شما نمیتوانید به مدیران،صاحبان گروه، و ادمین های ربات اخطار دهید.*", 0, "md")
          end
      end
    if is_admin1(BD.id_)then
   if not lang then
   return tdcli.sendMessage(TM.chat_id, "", 0, "_You can't warn_ *bot admins*", 0, "md")
    else
-  return tdcli.sendMessage(TM.chat_id, "", 0, "*شما نمیتوانید به ادمین های ربات اخطار دهید*", 0, "md")
+  return tdcli.sendMessage(TM.chat_id, "", 0, "*شما نمیتوانید به ادمین های ربات اخطار دهید.*", 0, "md")
          end
      end
 if tonumber(warnhash) == tonumber(max_warn) then
@@ -220,14 +220,14 @@ redis:del(hashwarn)
     if not lang then
     return tdcli.sendMessage(TM.chat_id, "", 0, "_User_ "..user_name.." *"..BD.id_.."* _has been_ *kicked* _because max warning_\n_Number of warn :_ "..warnhash.."/"..max_warn.."", 0, "md")
     else
-    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* به دلیل دریافت اخطار بیش از حد اخراج شد\nتعداد اخطار ها : "..max_warn.."/"..warnhash.."", 0, "md")
+    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* به دلیل دریافت اخطار بیش از حد اخراج شد.\n\n> *تعداد اخطار ها : "..max_warn.."/"..warnhash.."*", 0, "md")
     end
 else
 redis:set(hashwarn, setwarn)
     if not lang then
     return tdcli.sendMessage(TM.chat_id, "", 0, "_User_ "..user_name.." *"..BD.id_.."*\n_You've_ "..warnhash.." _of_ "..max_warn.." _Warns!_", 0, "md")
     else
-    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* *شما یک اخطار دریافت کردید*\n*تعداد اخطار های شما : "..max_warn.."/"..warnhash.."*", 0, "md")
+    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* *شما یک اخطار دریافت کردید.*\n\n> *تعداد اخطار های شما : "..max_warn.."/"..warnhash.."*", 0, "md")
     end
   end
 end
@@ -236,14 +236,14 @@ if not redis:get(hashwarn) then
    if not lang then
     return tdcli.sendMessage(TM.chat_id, "", 0, "_User_ "..user_name.." *"..BD.id_.."* _don't have_ *warning*", 0, "md")
    else
-    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* *هیچ اخطاری دریافت نکرده*", 0, "md")
+    return tdcli.sendMessage(TM.chat_id, "", 0, "_کاربر_ "..user_name.." *"..BD.id_.."* *هیچ اخطاری دریافت نکرده.*", 0, "md")
     end
   else
 redis:del(hashwarn)
    if not lang then
     return tdcli.sendMessage(TM.chat_id, "", 0, "_All warn of_ "..user_name.." *"..BD.id_.."* _has been_ *cleaned*", 0, "md")
    else
-    return tdcli.sendMessage(TM.chat_id, "", 0, "_تمامی اخطار های_ "..user_name.." *"..BD.id_.."* *پاک شدند*", 0, "md")
+    return tdcli.sendMessage(TM.chat_id, "", 0, "_تمامی اخطار های_ "..user_name.." *"..BD.id_.."* *پاک شدند.*", 0, "md")
     end
   end
 end
@@ -261,7 +261,7 @@ local hash = "gp_lang:"..msg.to.id
 local lang = redis:get(hash)
 local Chash = "cmd_lang:"..msg.to.id
 local Clang = redis:get(Chash)
-		if ((matches[1]:lower() == 'setwarn' and not Clang) or (matches[1] == "حداکثر اخطار" and Clang)) then
+		if ((matches[1]:lower() == 'setwarn') or (matches[1] == "حداکثر اخطار")) then
 			if not is_mod(msg) then
 				return
 			end
@@ -280,7 +280,7 @@ local Clang = redis:get(Chash)
      return "_حداکثر اخطار تنظیم شد به :_ *[ "..matches[2].." ]*"
 		end
   end
-if ((matches[1] == "warn" and not Clang) or (matches[1] == "اخطار" and Clang)) and is_mod(msg) then
+if ((matches[1] == "warn") or (matches[1] == "اخطار")) and is_mod(msg) then
 if not matches[2] and msg.reply_id then
     tdcli_function ({
       ID = "GetMessage",
@@ -301,7 +301,7 @@ tdcli_function ({
     }, action_by_username, {chat_id=msg.to.id,username=matches[2],msg=msg,cmd="warn"})
       end
    end
-if ((matches[1] == "unwarn" and not Clang) or (matches[1] == "حذف اخطار" and Clang)) and is_mod(msg) then
+if ((matches[1] == "unwarn") or (matches[1] == "حذف اخطار")) and is_mod(msg) then
 if not matches[2] and msg.reply_id then
     tdcli_function ({
       ID = "GetMessage",
@@ -340,4 +340,3 @@ return {
   },
   run = BeyondTeam
 }
-

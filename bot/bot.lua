@@ -104,6 +104,7 @@ function create_config( )
 		"info",
 		"idprof",
 		"cleandeleted",
+		"warn",
 		"autodelcache"
 	},
     sudo_users = {
